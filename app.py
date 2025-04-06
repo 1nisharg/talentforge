@@ -35,7 +35,7 @@ def initialize_chain():
 
     llm = ChatGroq(
         api_key=groq_api_key,
-        model_name="mistral-saba-24b",
+        model_name="llama3-70b-8192",
         temperature=0.3,
         max_tokens=4000
     )
@@ -43,10 +43,10 @@ def initialize_chain():
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
     system_prompt = SystemMessagePromptTemplate.from_template(
-        "You are TalentForge AI, a placement and interview expert. First try to answer based on provided context chunks. If no direct context is available, then use your own knowledge to give the most relevant answer regarding placements, HR queries, and interview guidance."
+        "You are TalentForge AI, a placement and interview expert. First try to answer based on provided context chunks. If no direct context is available or if the context doesn't fully address the question, then use your own knowledge to give the most relevant answer regarding placements, HR queries, and interview guidance. Format your responses using Markdown syntax for better readability. Use tables, code blocks, lists, quotes, and other Markdown features when appropriate."
     )
     human_prompt = HumanMessagePromptTemplate.from_template(
-        "Use the following context to answer the question:\n\n{context}\n\nQuestion: {question}"
+        "Use the following context to answer the question:\n\n{context}\n\nQuestion: {question}\n\nIf the context doesn't fully address the question or if you need to provide additional information, use your own knowledge to give a comprehensive answer."
     )
 
     prompt = ChatPromptTemplate.from_messages([system_prompt, human_prompt])

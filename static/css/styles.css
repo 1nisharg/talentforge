@@ -519,6 +519,91 @@ body {
   flex: 1;
 }
 
+/* Markdown styling for assistant messages */
+.assistant-message .message-bubble {
+  line-height: 1.6;
+}
+
+.assistant-message .message-bubble p {
+  margin-bottom: 1em;
+}
+
+.assistant-message .message-bubble h1,
+.assistant-message .message-bubble h2,
+.assistant-message .message-bubble h3,
+.assistant-message .message-bubble h4,
+.assistant-message .message-bubble h5,
+.assistant-message .message-bubble h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.assistant-message .message-bubble ul,
+.assistant-message .message-bubble ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  padding-left: 1em;
+}
+
+.assistant-message .message-bubble li {
+  margin-bottom: 0.5em;
+}
+
+.assistant-message .message-bubble code {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.assistant-message .message-bubble pre {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.assistant-message .message-bubble pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.assistant-message .message-bubble blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1em;
+  margin-left: 0;
+  margin-bottom: 1em;
+  color: var(--text-secondary);
+}
+
+.assistant-message .message-bubble table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.assistant-message .message-bubble th,
+.assistant-message .message-bubble td {
+  border: 1px solid var(--border-color);
+  padding: 0.5em;
+  text-align: left;
+}
+
+.assistant-message .message-bubble th {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .assistant-message .message-bubble code,
+.light-mode .assistant-message .message-bubble pre {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .assistant-message .message-bubble th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 .user-bubble {
   background-color: var(--chatgpt-user-bubble);
   border-radius: 16px;

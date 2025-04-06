@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
       // Replace loading with response
-      loadingMsg.querySelector('.message-bubble').textContent = data.answer;
+      loadingMsg.querySelector('.message-bubble').innerHTML = marked.parse(data.answer);
       
       // Add message actions if it's an assistant message
       if (loadingMsg.classList.contains('assistant-message')) {
@@ -203,7 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
           
           // Add click handler for clipboard functionality
           button.addEventListener('click', () => {
-            const messageContent = loadingMsg.querySelector('.message-bubble').textContent;
+            // Get the raw text content (not HTML) for copying
+            const messageContent = data.answer;
             navigator.clipboard.writeText(messageContent).then(() => {
               showToast('Copied!', 'Message content copied to clipboard');
             }).catch(err => {
@@ -269,9 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (role === 'user') {
       messageBubble.classList.add('user-bubble');
+      messageBubble.textContent = content;
+    } else {
+      // For assistant messages, render Markdown
+      messageBubble.innerHTML = marked.parse(content);
     }
     
-    messageBubble.textContent = content;
     messageContent.appendChild(messageBubble);
     
     messageEl.appendChild(messageContent);
