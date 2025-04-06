@@ -84,9 +84,14 @@ def ask():
 
 @app.route('/reset', methods=['POST'])
 def reset():
-    global conversation_history
+    global conversation_history, conversation_chain
     conversation_history = []
+
+    # Reinitialize the memory for LangChain
+    conversation_chain.memory.clear()
+
     return jsonify({'status': 'success', 'message': 'Conversation reset successfully'})
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
